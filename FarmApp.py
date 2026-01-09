@@ -1,4 +1,5 @@
 import streamlit as st
+from pathlib import Path
 import geopandas as gpd
 import folium
 from streamlit_folium import st_folium
@@ -15,9 +16,11 @@ st.title("🌾 Rice Polygon Web App (FID / District Based)")
 # -------------------------------
 @st.cache_data
 def load_data():
-    gdf = gpd.read_file(r"newRicecluster\newRice_cluster.shp")
+    shp_path = Path(__file__).parent / "newRicecluster" / "newRice_cluster.shp"
+    gdf= gpd.read_file(shp_path)
     gdf = gdf.to_crs(epsg=4326)   # for folium
     return gdf
+
 
 gdf = load_data()
 
