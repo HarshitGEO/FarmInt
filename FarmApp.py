@@ -15,7 +15,8 @@ st.title("🌾 Rice Polygon Web App (FID / District Based)")
 # -------------------------------
 @st.cache_data
 def load_data():
-    gdf = gpd.read_file(r"newRicecluster\newRice_cluster.shp")
+    shp_path = Path("newRicecluster") / "newRice_cluster.shp"
+    gdf = gpd.read_file(shp_path)
     gdf = gdf.to_crs(epsg=4326)   # for folium
     return gdf
 
